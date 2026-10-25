@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة تسليم تقارير الطلبة | وزارة التربية والتعليم & Pearson</title>
+    <!-- Google Fonts: Cairo & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for modern icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Animated Glows -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Header Section with Dual Institutional Logos -->
+    <header class="portal-header">
+        <div class="container header-content">
+            <!-- Ministry of Education Logo (Right side in Arabic RTL) -->
+            <div class="logo-box ministry-box" title="وزارة التربية والتعليم - المملكة الأردنية الهاشمية">
+                <img src="assets/ministry-logo-clean.png" alt="شعار وزارة التربية والتعليم" class="logo-img ministry-logo">
+                <div class="logo-text">
+                    <span class="logo-sub" data-i18n="jordanKingdom">المملكة الأردنية الهاشمية</span>
+                    <span class="logo-main" data-i18n="ministryTitle">وزارة التربية والتعليم</span>
+                </div>
+            </div>
+
+            <!-- Top Interactive Controls (Theme & Language) -->
+            <div class="header-controls">
+                <!-- Theme Toggle Button -->
+                <button type="button" id="themeToggleBtn" class="control-btn" aria-label="تبديل المظهر">
+                    <span class="control-icon"><i class="fa-solid fa-moon"></i></span>
+                    <span class="control-text" data-i18n="darkMode">الوضع الليلي</span>
+                </button>
+
+                <!-- Language Toggle Button -->
+                <button type="button" id="langToggleBtn" class="control-btn" aria-label="تغيير اللغة">
+                    <span class="control-icon"><i class="fa-solid fa-globe"></i></span>
+                    <span class="control-text" id="langLabel">English</span>
+                </button>
+            </div>
+
+            <!-- Pearson Logo (Left side in Arabic RTL) -->
+            <div class="logo-box pearson-box" title="Pearson BTEC Education">
+                <img src="assets/pearson-logo.png" alt="Pearson Logo" class="logo-img pearson-logo">
+                <div class="logo-text">
+                    <span class="logo-main" data-i18n="btecProgram">برامج BTEC المعتمدة</span>
+                    <span class="logo-sub">Pearson Education</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- Hero Badge & Title -->
+            <div class="hero-section text-center">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-file-zipper"></i>
+                    <span data-i18n="heroBadge">بوابة التسليم الرقمي للمشاريع والتقارير المهنية</span>
+                </div>
+                <h1 class="hero-title" data-i18n="heroTitle">منصة رفع تقارير الطلبة</h1>
+                <p class="hero-subtitle" data-i18n="heroSubtitle">يرجى تعبئة بيانات الطالب بدقة وإرفاق ملف التقرير بتنسيق مضغوط (ZIP / RAR)</p>
+            </div>
+
+            <!-- Form Card Wrapper -->
+            <div class="form-wrapper">
+                <form id="reportUploadForm" class="modern-form" novalidate>
+                    
+                    <!-- Form Section 1: Student Information -->
+                    <div class="form-card">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                            <div class="section-info">
+                                <h3 data-i18n="sectionStudentTitle">بيانات الطالب</h3>
+                                <p data-i18n="sectionStudentDesc">أدخل الاسم الكامل واختر المرحلة الدراسية المعتمدة</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Student Name Input -->
+                            <div class="input-group full-width">
+                                <label for="studentName" class="form-label">
+                                    <span data-i18n="studentNameLabel">اسم الطالب الرباعي</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="input-container">
+                                    <i class="fa-regular fa-user input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        id="studentName" 
+                                        name="studentName" 
+                                        class="form-control" 
+                                        placeholder="مثال: أحمد محمد علي حسن" 
+                                        data-placeholder-ar="مثال: أحمد محمد علي حسن"
+                                        data-placeholder-en="e.g. Ahmad Mohammad Ali Hassan"
+                                        required 
+                                        minlength="6"
+                                        autocomplete="name"
+                                    >
+                                    <button type="button" class="input-clear-btn" id="clearNameBtn" title="مسح">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <span class="field-hint" data-i18n="nameHint">يرجى كتابة الاسم الرباعي كما هو مسجل في المدرسة</span>
+                                <div class="error-msg" id="nameError"></div>
+                            </div>
+
+                            <!-- Grade / Level Selection -->
+                            <div class="input-group full-width">
+                                <label class="form-label">
+                                    <span data-i18n="gradeLabel">الصف والمستوى الدراسي</span>
+                                    <span class="required">*</span>
+                                </label>
+                                
+                                <div class="grade-cards-grid">
+                                    <!-- Option 1: Grade 10 Level 2 -->
+                                    <label class="grade-card" for="grade10">
+                                        <input type="radio" name="gradeLevel" id="grade10" value="الصف العاشر Level 2" required>
+                                        <div class="grade-card-inner">
+                                            <div class="grade-indicator"></div>
+                                            <div class="grade-badge">Level 2</div>
+                                            <div class="grade-content">
+                                                <h4 data-i18n="grade10Title">الصف العاشر</h4>
+                                                <span class="grade-desc" data-i18n="grade10Sub">Level 2 - التعليم المهني</span>
+                                            </div>
+                                            <i class="fa-solid fa-circle-check check-icon"></i>
+                                        </div>
+                                    </label>
+
+                                    <!-- Option 2: Grade 11 Level 3 Part 1 -->
+                                    <label class="grade-card" for="grade11">
+                                        <input type="radio" name="gradeLevel" id="grade11" value="الصف الاول ثانوي Level 3 part 1">
+                                        <div class="grade-card-inner">
+                                            <div class="grade-indicator"></div>
+                                            <div class="grade-badge">Level 3 (Part 1)</div>
+                                            <div class="grade-content">
+                                                <h4 data-i18n="grade11Title">الصف الأول ثانوي</h4>
+                                                <span class="grade-desc" data-i18n="grade11Sub">Level 3 part 1 - السنة الأولى</span>
+                                            </div>
+                                            <i class="fa-solid fa-circle-check check-icon"></i>
+                                        </div>
+                                    </label>
+
+                                    <!-- Option 3: Grade 12 Level 3 Part 2 -->
+                                    <label class="grade-card" for="grade12">
+                                        <input type="radio" name="gradeLevel" id="grade12" value="الصف الثاني عشر Level 3 part 2">
+                                        <div class="grade-card-inner">
+                                            <div class="grade-indicator"></div>
+                                            <div class="grade-badge">Level 3 (Part 2)</div>
+                                            <div class="grade-content">
+                                                <h4 data-i18n="grade12Title">الصف الثاني عشر</h4>
+                                                <span class="grade-desc" data-i18n="grade12Sub">Level 3 part 2 - التخرج والمشروع</span>
+                                            </div>
+                                            <i class="fa-solid fa-circle-check check-icon"></i>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="error-msg" id="gradeError"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Section 2: Task Information -->
+                    <div class="form-card">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
+                            <div class="section-info">
+                                <h3 data-i18n="sectionTaskTitle">بيانات المهمة أو التقرير</h3>
+                                <p data-i18n="sectionTaskDesc">حدد عنوان المهمة المطلوبة ورقم الوحدة</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Task Name Input -->
+                            <div class="input-group full-width">
+                                <label for="taskName" class="form-label">
+                                    <span data-i18n="taskNameLabel">اسم المهمة / عنوان المشروع</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="input-container">
+                                    <i class="fa-solid fa-pen-nib input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        id="taskName" 
+                                        name="taskName" 
+                                        class="form-control" 
+                                        placeholder="مثال: تقرير الوحدة الثالثة - تصميم الشبكات (Unit 3 Assignment 1)"
+                                        data-placeholder-ar="مثال: تقرير الوحدة الثالثة - تصميم الشبكات (Unit 3 Assignment 1)"
+                                        data-placeholder-en="e.g. Unit 3 Assignment 1 - Networking Report"
+                                        required 
+                                        minlength="3"
+                                    >
+                                </div>
+                                <div class="task-suggestions">
+                                    <span class="suggestion-label" data-i18n="quickSuggestions">اقتراحات سريعة:</span>
+                                    <button type="button" class="chip-btn" data-fill="Assignment 1 - تقرير المهمة الأولى">Assignment 1</button>
+                                    <button type="button" class="chip-btn" data-fill="Assignment 2 - المشروع العملي">Assignment 2</button>
+                                    <button type="button" class="chip-btn" data-fill="Final Project - المشروع النهائي">Final Project</button>
+                                </div>
+                                <div class="error-msg" id="taskError"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Section 3: Compressed File Upload -->
+                    <div class="form-card">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fa-solid fa-file-zipper"></i>
+                            </div>
+                            <div class="section-info">
+                                <h3 data-i18n="sectionUploadTitle">رفع ملف التقرير المضغوط</h3>
+                                <p data-i18n="sectionUploadDesc">يجب أن يكون الملف مضغوطاً بصيغة (ZIP, RAR, 7Z) يحتوي على المستندات والأدلة</p>
+                            </div>
+                        </div>
+
+                        <!-- Dropzone Area -->
+                        <div class="dropzone" id="dropzoneArea">
+                            <input 
+                                type="file" 
+                                id="fileInput" 
+                                name="reportFile" 
+                                accept=".zip,.rar,.7z,.tar,.gz" 
+                                class="file-input-hidden" 
+                                required
+                            >
+                            
+                            <div class="dropzone-content" id="dropzonePrompt">
+                                <div class="upload-pulse-icon">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <h4 class="dropzone-title" data-i18n="dropzonePromptTitle">اسحب وأفلت الملف المضغوط هنا</h4>
+                                <p class="dropzone-text" data-i18n="dropzonePromptSubtitle">أو اضغط للتصفح واختيار الملف من جهازك</p>
+                                <div class="file-format-tags">
+                                    <span class="tag tag-zip">.ZIP</span>
+                                    <span class="tag tag-rar">.RAR</span>
+                                    <span class="tag tag-7z">.7Z</span>
+                                    <span class="tag-limit" data-i18n="fileSizeLimit">الحد الأقصى: 100 ميغابايت</span>
+                                </div>
+                            </div>
+
+                            <!-- File Selected Preview Card (Hidden by default) -->
+                            <div class="file-preview-card" id="filePreviewCard" style="display: none;">
+                                <div class="file-icon-box">
+                                    <i class="fa-solid fa-file-zipper"></i>
+                                </div>
+                                <div class="file-info-box">
+                                    <div class="file-name-row">
+                                        <span class="file-name" id="fileNameDisplay">report_file.zip</span>
+                                        <span class="file-status-badge" data-i18n="fileReadyBadge">جاهز للرفع</span>
+                                    </div>
+                                    <div class="file-meta-row">
+                                        <span class="file-size" id="fileSizeDisplay">0.0 MB</span>
+                                        <span class="file-ext" id="fileExtDisplay">ZIP</span>
+                                    </div>
+                                    <!-- Progress Simulation Bar -->
+                                    <div class="file-progress-bar" id="fileProgressBar">
+                                        <div class="file-progress-fill" id="fileProgressFill"></div>
+                                    </div>
+                                </div>
+                                <button type="button" class="file-remove-btn" id="removeFileBtn" title="حذف الملف">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="error-msg" id="fileError"></div>
+                    </div>
+
+                    <!-- Submit Button Area -->
+                    <div class="submit-action-box">
+                        <button type="submit" id="submitBtn" class="primary-btn submit-btn">
+                            <span class="btn-loader" id="btnLoader" style="display: none;">
+                                <i class="fa-solid fa-circle-notch fa-spin"></i>
+                            </span>
+                            <span class="btn-icon" id="btnIcon">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </span>
+                            <span class="btn-text" id="btnText" data-i18n="submitBtn">إرسال التقرير واعتماد التسليم</span>
+                        </button>
+                        <p class="submit-notice">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span data-i18n="submitNotice">يتم حفظ وتوثيق التسليمات إلكترونياً مع رقم مرجعي رسمي</span>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Submission Success Modal / Receipt -->
+            <div class="modal-overlay" id="successModal">
+                <div class="modal-card">
+                    <div class="modal-header-visual">
+                        <div class="success-icon-animated">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h2 data-i18n="successTitle">تم استلام التقرير بنجاح!</h2>
+                        <p data-i18n="successSub">تم توثيق عملية التسليم وإرسال نسخة إلى سجلات المادة</p>
+                    </div>
+
+                    <!-- Official Receipt Details -->
+                    <div class="receipt-card">
+                        <div class="receipt-header">
+                            <span class="receipt-title" data-i18n="receiptTitle">إشعار تسليم مهمة دراسية</span>
+                            <span class="receipt-id" id="receiptNumber">REF-2026-000000</span>
+                        </div>
+                        <div class="receipt-body">
+                            <div class="receipt-row">
+                                <span class="receipt-label" data-i18n="receiptStudent">اسم الطالب:</span>
+                                <strong class="receipt-value" id="receiptStudentName">-</strong>
+                            </div>
+                            <div class="receipt-row">
+                                <span class="receipt-label" data-i18n="receiptGrade">الصف والمستوى:</span>
+                                <strong class="receipt-value" id="receiptGradeName">-</strong>
+                            </div>
+                            <div class="receipt-row">
+                                <span class="receipt-label" data-i18n="receiptTask">اسم المهمة:</span>
+                                <strong class="receipt-value" id="receiptTaskName">-</strong>
+                            </div>
+                            <div class="receipt-row">
+                                <span class="receipt-label" data-i18n="receiptFile">الملف المرفق:</span>
+                                <strong class="receipt-value" id="receiptFileName">-</strong>
+                            </div>
+                            <div class="receipt-row">
+                                <span class="receipt-label" data-i18n="receiptDate">تاريخ ووقت التسليم:</span>
+                                <strong class="receipt-value" id="receiptTimestamp">-</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Actions -->
+                    <div class="modal-actions">
+                        <button type="button" class="secondary-btn" id="printReceiptBtn">
+                            <i class="fa-solid fa-print"></i>
+                            <span data-i18n="printBtn">طباعة / حفظ الإشعار</span>
+                        </button>
+                        <button type="button" class="primary-btn" id="newSubmissionBtn">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span data-i18n="newSubmitBtn">تسليم تقرير جديد</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+        <div class="container footer-content">
+            <div class="footer-copy">
+                <span data-i18n="footerCopy">جميع الحقوق محفوظة © وزارة التربية والتعليم & Pearson Education 2026</span>
+            </div>
+            <div class="footer-badges">
+                <span class="portal-tag"><i class="fa-solid fa-award"></i> BTEC Accredited</span>
+                <span class="portal-tag"><i class="fa-solid fa-lock"></i> SSL Secured</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
