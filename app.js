@@ -7,7 +7,7 @@
 // =========================================================================
 // 🔗 إعداد رابط جوجل درايف (ضع رابط الـ Web App الخاص بك هنا):
 // =========================================================================
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby83UrX_tnEQQW7dwQx5xupcuR4cYbhcVEF0Txn05sD6AtHWJSru5bLqNSlWdRCi2Qm/exec"; // <-- الصق رابط الـ Web App هنا بين علامتي التنصيص
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwLk8yxtJrcqpkLEwfhQFgiZDsHRILhibr6HihI1MMB_u0XcQuKHkaiafxK1f7cbIPD/exec"; // <-- الصق رابط الـ Web App هنا بين علامتي التنصيص
 
 // =========================================================================
 // 1. Multilingual Translations Dictionary
